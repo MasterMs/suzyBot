@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_SERVER')
+GUILD = os.getenv('DISCORD_GUILD')
 
 client = discord.Client()
 
@@ -14,8 +14,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    commands = ['-play', '-PLAY', '-stop', '-STOP', '-skip', '-SKIP']
-    if (message.content in commands) and (message.channel.name == 'general'):
+    controlChars = ['-','!']
+    if (message.content[0] not in controlChars) and (message.channel.name == 'general'):
         print(f'Delete message {message.content}')
         await message.delete()
         await message.channel.send(f'<@{message.author.id}> **STOP SENDING BOT COMMANDS IN {message.channel.mention} ASSHOLE**')
