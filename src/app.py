@@ -19,11 +19,12 @@ async def on_message(message):
     controlChars = ['-','!']
     if message.content[0:2] == '--':
         await message.channel.send(SuzyBot.interpHelp(message.content))
-    
     elif (message.content[0] in controlChars) and (message.channel.name == 'general'):
         print(f'Delete message {message.content}')
-        await message.delete()
         await message.channel.send(f'<@{message.author.id}> **STOP SENDING BOT COMMANDS IN {message.channel.mention} ASSHOLE**')
+        
+    await message.delete()
+
     
 
 if __name__ == "__main__":
