@@ -1,4 +1,5 @@
 from utilities import Utilities
+
 class SuzyBot:
     @staticmethod
     def interpHelp(string=""):
@@ -11,5 +12,5 @@ class SuzyBot:
 
     @staticmethod
     def printStartupDetails(client):
-
+        Utilities.clear()
         print(f'Startup Details\n###################\n{client.user.name} has connected to {client.guilds[0].name}\nping: {str(client.latency*100)}ms')
