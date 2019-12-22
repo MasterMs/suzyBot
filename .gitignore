@@ -1,5 +1,1 @@
-bin
-include
-lib
 src/.env
-pyvenv.cfg
