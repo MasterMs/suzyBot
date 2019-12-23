@@ -29,7 +29,7 @@ async def on_message(message):
             await message.channel.send(f'<@{message.author.id}> **STOP SENDING BOT COMMANDS IN {message.channel.mention} ASSHOLE**')
             await message.delete()
         elif message.content.lower() in suzy.users[message.author.id]['blacklist']:
-                await message.delete()
+            await message.delete()
     except KeyError:
         pass
 
