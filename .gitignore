@@ -2,3 +2,4 @@ src/.env
 src/__pycache__
 src/userProfile.json
 *.pyc
+exec
