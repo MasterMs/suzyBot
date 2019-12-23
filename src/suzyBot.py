@@ -6,7 +6,7 @@ class SuzyBot:
        self.users = {}
 
     def readUsers(self):
-        with open('userProfile.json', 'r') as userFile:
+        with open('D:/suzyBot/src/userProfile.json', 'r') as userFile:
             users = json.load(userFile)
             for user in users:
                 self.users[user['userId']] = user
@@ -23,6 +23,7 @@ class SuzyBot:
             '''
         elif string == '--refresh':
             self.readUsers()
+            return " Blacklist refreshed"
         elif string == '--exit':
             Utilities.closeServer()
         elif string == '--hadar':
