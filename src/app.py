@@ -19,17 +19,19 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    controlChars = ['-','!']
-    suzy.checkDel()
-    if message.content[0:2] == '--':
-        await message.channel.send(f'<@{message.author.id}>{suzy.interp(message.content)}')
-        await message.delete()
-    elif (message.content[0] in controlChars) and (message.channel.name == 'general'):
-        print(f'Delete message {message.content}')
-        await message.channel.send(f'<@{message.author.id}> **STOP SENDING BOT COMMANDS IN {message.channel.mention} ASSHOLE**')
-        await message.delete()
-    elif message.content in suzy.users[message.author.id]['words']:
-            message.delete()
+    try:
+        controlChars = ['-','!']
+        if message.content[0:2] == '--':
+            await message.channel.send(f'<@{message.author.id}>{suzy.interp(message.content)}')
+            await message.delete()
+        elif (message.content[0] in controlChars) and (message.channel.name == 'general'):
+            print(f'Delete message {message.content}')
+            await message.channel.send(f'<@{message.author.id}> **STOP SENDING BOT COMMANDS IN {message.channel.mention} ASSHOLE**')
+            await message.delete()
+        elif message.content.lower() in suzy.users[message.author.id]['blacklist']:
+                await message.delete()
+    except KeyError:
+        pass
 
 
 if __name__ == "__main__":
