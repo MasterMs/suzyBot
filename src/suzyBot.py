@@ -45,10 +45,10 @@ class SuzyBot(discord.Client):
         if string == '--':
             return "**Suzy Bot Prefix**"
         elif string == '--help':
-            return '''
-            **Help**
-
-            '''
+            helper = ''
+            for i in self.userDict:
+                helper.join([helper, i, self.userDict[i]])
+            return helper
         elif string == '--refresh':
             self.readUsers()
             return " Blacklist refreshed"
