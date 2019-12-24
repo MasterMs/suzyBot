@@ -1,8 +1,5 @@
 import os
-import discord 
-import json
 from dotenv import load_dotenv
-from utilities import Utilities
 from suzyBot import SuzyBot
 
 if __name__ == "__main__":
