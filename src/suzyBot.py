@@ -22,14 +22,14 @@ class SuzyBot(discord.Client):
 
     async def on_message(self, message):
         try:
-            await self.commands[message.content](message)
+            await self.commands[message.content[0:5].lower()](message)
         except KeyError:
             pass
         except IndexError:
             pass
     
     def readUsers(self):
-        with open('G:/suzyBot/src/userProfile.json', 'r') as userFile:
+        with open('/usr/src/app/src/permissions.json', 'r') as userFile:
             users = json.load(userFile)
             for user in users:
                 self.userDict[user['userId']] = user
