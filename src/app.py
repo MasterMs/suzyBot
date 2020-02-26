@@ -1,13 +1,12 @@
 import os
-from dotenv import load_dotenv
+import dotenv
 from suzyBot import SuzyBot
 
 if __name__ == "__main__":
     try:
-        load_dotenv()
-        TOKEN = os.getenv('DISCORD_TOKEN')
+        dotenv.load_dotenv()
         suzy = SuzyBot()
-        suzy.run(TOKEN) 
+        suzy.run(os.getenv('DISCORD_TOKEN')) 
     except:
         print("Error Encountered, Program Now Exiting")
         exit()
