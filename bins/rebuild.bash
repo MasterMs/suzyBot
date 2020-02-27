@@ -1,4 +1,6 @@
-docker stop $1
-docker rm $1 
-docker build -t $1 . 
-docker run --name $1 $1
+cd $1
+docker stop suzy-bot
+docker rm suzy-bot
+docker build -t suzy-bot . 
+docker run --name suzy-bot suzy-bot
+
