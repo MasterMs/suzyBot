@@ -15,12 +15,12 @@ class SuzyBot(discord.Client):
 
     async def on_message(self, message):
         try:
-            if (any(s in message.content.lower() for s in ["-play", "-leave"])) and (message.channel.id == 422450473304326147):
+            if (any(s in message.content.lower() for s in ["-play", "-leave", "-stop"])) and (message.channel.id == 422450473304326147):
                 await self.response(message, mode='g')
             elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
                 await self.response(message, mode='b')
         except IndexError as e:
-            self.db["SuzyData"]["errors"].insert({
+            self.db["SuzyData"]["errors"].insert_one({
                 "date": datetime.datetime.utcnow(),
                 "error": e
             })
