@@ -1,4 +1,4 @@
-cd $1
+cd g:/suzyBot/
 docker stop suzy-bot
 docker rm suzy-bot
 docker build -t suzy-bot . 
