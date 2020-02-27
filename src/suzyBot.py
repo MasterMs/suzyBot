@@ -12,7 +12,6 @@ class SuzyBot(discord.Client):
 
     async def on_ready(self):
         self.printStartupDetails()
-        self.readUsers()
         await self.change_presence(status=discord.Status.online, activity=discord.Game("Beating David | --help"))
 
     async def groovy_message(self, message):
@@ -28,11 +27,11 @@ class SuzyBot(discord.Client):
         except IndexError:
             pass
     
-    def readUsers(self):
-        with open('/usr/src/app/src/permissions.json', 'r') as userFile:
-            users = json.load(userFile)
-            for user in users:
-                self.userDict[user['userId']] = user
+    # def readUsers(self):
+    #     with open('/usr/src/app/src/permissions.json', 'r') as userFile:
+    #         users = json.load(userFile)
+    #         for user in users:
+    #             self.userDict[user['userId']] = user
 
     def printStartupDetails(self):
         Utilities.clear()
