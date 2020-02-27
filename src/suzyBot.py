@@ -1,17 +1,15 @@
-from utilities import Utilities
 import json
 import discord
+import pymongo
+import os
+import json
 
 class SuzyBot(discord.Client):
     def __init__(self):
         super().__init__()
-        self.userDict = {}
-        self.commands = {
-            '-play' : self.groovy_message
-        }
+        self.suzySchema = pymongo.MongoClient(f"mongodb+srv://admin:{os.getenv('DB_PASSWORD')}@cluster-suzyschema-f4pio.azure.mongodb.net/test?retryWrites=true&w=majority")
 
     async def on_ready(self):
-        self.printStartupDetails()
         await self.change_presence(status=discord.Status.online, activity=discord.Game("Beating David | --help"))
 
     async def groovy_message(self, message):
@@ -21,18 +19,9 @@ class SuzyBot(discord.Client):
 
     async def on_message(self, message):
         try:
-            await self.commands[message.content[0:5].lower()](message)
+            if (message.content in self.suzySchema["SuzyData"]["Users"].find({"discordId": message.author.id})[0]["blackList"]):
+                await message.delete()
+            if (any(subString in message.content for subString in ["-play", "-leave"])) and (message.channel.id == 422450473304326147):
+                await self.groovy_message(message)
         except KeyError:
             pass
-        except IndexError:
-            pass
-    
-    # def readUsers(self):
-    #     with open('/usr/src/app/src/permissions.json', 'r') as userFile:
-    #         users = json.load(userFile)
-    #         for user in users:
-    #             self.userDict[user['userId']] = user
-
-    def printStartupDetails(self):
-        Utilities.clear()
-        print(f'Startup Details\n###################\n{self.user.name} has connected to {self.guilds[0].name}\nping: {int(self.latency*100)}ms')
