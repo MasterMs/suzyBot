@@ -18,7 +18,6 @@ class SuzyBot(discord.Client):
             self.errorInvoked(e)
             return 1
         
-
     async def on_message(self, message):
         try:
             if (any(s in message.content.lower() for s in ["-play", "-leave", "-stop"])) and (message.channel.id == 422450473304326147):
@@ -47,5 +46,5 @@ class SuzyBot(discord.Client):
     def errorInvoked(self, error):
         self.db["SuzyData"]["errors"].insert_one({
                 "date": datetime.datetime.utcnow(),
-                "error": e
+                "error": error
             })
