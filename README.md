@@ -18,7 +18,7 @@ originally whenever I would want to rebuild my container,
 I would run ***`bins/rebuildDb.bash`***, it would
 1. stop the server 
 2. rebuild it
-3. restart it and
+3. restart it
 
 Now what I wanted to do was find a system so that I was not creating a
 container from my local system but instead from my git repository
