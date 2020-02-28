@@ -3,3 +3,4 @@ src/__pycache__
 src/userProfile.json
 *.pyc
 exec
+*.code-workspace
