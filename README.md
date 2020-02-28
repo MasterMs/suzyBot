@@ -4,7 +4,7 @@ A Discord bot that I made so that that my friend doesn't keep putting bot comman
 
 ___
 
-#### Getting environment variables to the container while maintaining data integrity
+## Getting environment variables to the container while maintaining data integrity
 
 ***Friday, February 28, 2020***
 
