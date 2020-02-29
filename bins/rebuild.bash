@@ -1,6 +1,6 @@
 docker stop suzy-bot
 docker rm suzy-bot
-docker build -t masterms/suzyBot .
-docker run --name suzy-bot suzy-bot --env-file .env
+docker build -t suzybot-v.0.0.1 .
+docker run --name suzy-bot github/masterms/bot
 
 
