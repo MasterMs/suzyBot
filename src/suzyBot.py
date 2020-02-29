@@ -8,7 +8,7 @@ import datetime
 class SuzyBot(discord.Client):
     def __init__(self):
         super().__init__()
-        self.db = pymongo.MongoClient(f"mongodb+srv://admin:{os.getenv('DB_PASSWORD')}@cluster-suzyschema-f4pio.azure.mongodb.net/test?retryWrites=true&w=majority")
+        self.db = pymongo.MongoClient(os.getenv("DB_CONNECT"))
     
     async def on_ready(self):
         try:
