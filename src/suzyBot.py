@@ -1,13 +1,14 @@
 import json
-import discord
-import pymongo
 import os
-import json
 import datetime
+import discord
+import dotenv
+import pymongo
 
 class SuzyBot(discord.Client):
     def __init__(self):
         super().__init__()
+        dotenv.load_dotenv()
         self.db = pymongo.MongoClient(os.getenv("DB_CONNECT"))
     
     async def on_ready(self):
