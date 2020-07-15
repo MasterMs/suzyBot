@@ -13,10 +13,8 @@ class SuzyBot(discord.Client):
     async def on_ready(self):
         try:
             await self.change_presence(status=discord.Status.online, activity=discord.Game("Beating David | --help"))
-            return 0
         except Exception as e:
             self.errorInvoked(e)
-            return 1
         
     async def on_message(self, message):
         try:
@@ -24,10 +22,8 @@ class SuzyBot(discord.Client):
                 await self.response(message, mode='g')
             elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
                 await self.response(message, mode='b')
-            return 0
         except Exception as e:
             self.errorInvoked(e)
-            return 1
 
     async def response(self, message, mode=''):
         try:
@@ -38,13 +34,12 @@ class SuzyBot(discord.Client):
             else:
                 pass
             await message.delete()
-            return 0
         except Exception as e:
             self.errorInvoked(e)
-            return 1
 
     def errorInvoked(self, error):
-        self.db["SuzyData"]["errors"].insert_one({
-                "date": datetime.datetime.utcnow(),
-                "error": error
-            })
+        print(error)
+        # self.db["SuzyData"]["errors"].insert_one({
+        #         "date": datetime.datetime.utcnow(),
+        #         "error": error
+        #     })
