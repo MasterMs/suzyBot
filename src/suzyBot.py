@@ -23,6 +23,10 @@ class SuzyBot(discord.Client):
                 await self.response(message, mode='g')
             elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
                 await self.response(message, mode='b')
+            elif message.channel.id == 727404164224778320:
+                await message.add_reaction(':smash2:')
+                await message.add_reaction(':pass:')
+
         except Exception as e:
             self.errorInvoked(e)
 
