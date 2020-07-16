@@ -22,5 +22,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         docker build --tag suzy-bot .
-        docker run suzy-bot
+
         
