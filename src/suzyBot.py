@@ -33,7 +33,7 @@ class SuzyBot(discord.Client):
                 await message.add_reaction(self.get_emoji(727395835964424242))
         
 
-    async def define(self, word):
+    def define(self, word):
         try:
             defn = self.words.meaning(word)
             if defn == {} or None:
