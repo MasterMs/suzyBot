@@ -33,14 +33,16 @@ class SuzyBot(discord.Client):
                 await message.add_reaction(self.get_emoji(727395835964424242))
         
 
-    # def define(self, word):
-    #     try:
-    #         defn = self.words.meaning(word)
-    #         if defn == {} or None:
-    #             defn = ud.define(word)[0]
-    #         return defn
-    #     except Exception as e:
-    #         self.errorInvoked(e)
+    def define(self, word):
+        try:
+            defn = self.words.meaning(word)
+            
+            if defn == {} or None:
+                defn = ud.define(word)[0]
+
+            return defn
+        except Exception as e:
+            self.errorInvoked(e)
 
     async def response(self, message, mode=''):
         try:
