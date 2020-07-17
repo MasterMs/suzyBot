@@ -4,6 +4,7 @@ import datetime
 import discord
 import dotenv
 import pymongo
+import urbandictionary as ud
 from PyDictionary import PyDictionary
 
 class SuzyBot(discord.Client):
@@ -25,20 +26,25 @@ class SuzyBot(discord.Client):
                 await self.response(message, mode='g')
             elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
                 await self.response(message, mode='b')
+            elif message.content.lower()[0:4] == '-def':
+                await message.channel.send(self.define(message.content[5:]))
             elif message.channel.id == 727404164224778320:
                 await message.add_reaction(self.get_emoji(690057068455264258))
                 await message.add_reaction(self.get_emoji(727395835964424242))
             
-            if any(s in message.content.lower() for s in ["-define"]):
-                await message.channel.send(self.words.meaning(message.content.lower()[8:]))
-
+    async def define(self, word):
+        try:
+            defn = self.words.meaning(word)
+            if defn == {} or None:
+                defn = ud.define(word)[0]
+            return defn
         except Exception as e:
             self.errorInvoked(e)
 
     async def response(self, message, mode=''):
         try:
             if mode == 'g':
-                await message.channel.send(f'<@{message.author.id}> **sugmasdick {message.channel.mention}**')
+                await message.channel.send(f'<@{message.author.id}> **STOP SENDING GROOVY COMMANDS IN {message.channel.mention}**')
             elif mode == 'b':
                 await message.channel.send(f'<@{message.author.id}> **Hey! you can\'t say that word!**')
             else:
