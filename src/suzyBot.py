@@ -31,15 +31,12 @@ class SuzyBot(discord.Client):
             elif message.channel.id == 727404164224778320:
                 await message.add_reaction(self.get_emoji(690057068455264258))
                 await message.add_reaction(self.get_emoji(727395835964424242))
-        
 
-    def define(self, word):
+    async def define(self, word):
         try:
             defn = self.words.meaning(word)
-            
             if defn == {} or None:
                 defn = ud.define(word)[0]
-
             return defn
         except Exception as e:
             self.errorInvoked(e)
