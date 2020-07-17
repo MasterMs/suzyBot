@@ -29,7 +29,7 @@ class SuzyBot(discord.Client):
                 await message.add_reaction(self.get_emoji(690057068455264258))
                 await message.add_reaction(self.get_emoji(727395835964424242))
             
-            if any(s in message.content.lower() for s in ["-play", "-leave", "-stop"]):
+            if any(s in message.content.lower() for s in ["-define"]):
                 await message.channel.send(self.words.meaning(message.content.lower()[8:]))
 
         except Exception as e:
