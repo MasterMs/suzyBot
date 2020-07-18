@@ -40,8 +40,6 @@ class SuzyBot(discord.Client):
             if defn == {} or None:
                 defn = str(ud.define(word))
 
-            embd = discord.Embed(title="SuzyBot", description="Dictionary")
-            embd.add_field(name="definition", value="test")
             return defn
         except Exception as e:
             self.errorInvoked(e)
