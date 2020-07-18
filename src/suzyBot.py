@@ -41,8 +41,8 @@ class SuzyBot(discord.Client):
                 defn = str(ud.define(word))
 
             embd = discord.Embed(title="SuzyBot", description="Dictionary")
-            embd.add_field(name="definition", value=defn[str(word).lower()])
-            return embd
+            embd.add_field(name="definition", value="test")
+            return defn
         except Exception as e:
             self.errorInvoked(e)
 
