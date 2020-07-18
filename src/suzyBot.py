@@ -34,7 +34,7 @@ class SuzyBot(discord.Client):
         except Exception as e:
             self.errorInvoked(e)
 
-    async def define(self, word):
+    def define(self, word):
         try:
             defn = self.words.meaning(word)
             if defn == {} or None:
