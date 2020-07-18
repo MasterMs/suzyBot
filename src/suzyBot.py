@@ -27,7 +27,7 @@ class SuzyBot(discord.Client):
             elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
                 await self.response(message, mode='b')
             elif message.content.lower()[0:4] == '-def':
-                await message.channel.send(self.define(message.content[5:]))
+                await message.channel.send(embed=self.define(message.content[5:]))
             elif message.channel.id == 727404164224778320:
                 await message.add_reaction(self.get_emoji(690057068455264258))
                 await message.add_reaction(self.get_emoji(727395835964424242))
@@ -39,6 +39,9 @@ class SuzyBot(discord.Client):
             defn = self.words.meaning(word)
             if defn == {} or None:
                 defn = str(ud.define(word))
+
+            embd = discord.Embed(title="SuzyBot", description="Dictionary")
+            embd.add_field(name="definition", value=defn[str(word).lower()])
             return defn
         except Exception as e:
             self.errorInvoked(e)
