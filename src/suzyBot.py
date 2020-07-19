@@ -36,9 +36,11 @@ class SuzyBot(discord.Client):
 
     def define(self, word):
         try:
-            defn = self.words.meaning(word)
-            if defn == {} or None:
-                defn = str(ud.define(word))
+            defn = f"***{word}***\n"
+            r = self.words.meaning(word)
+            for i in r:
+                for k in r[i]:
+                    defn += f'{k}\n'
 
             return defn
         except Exception as e:
@@ -47,7 +49,7 @@ class SuzyBot(discord.Client):
     async def response(self, message, mode=''):
         try:
             if mode == 'g':
-                await message.channel.send(f'<@{message.author.id}> {message.channel.mention}**', embed=embeds.Groovy)
+                await message.channel.send(f'<@{message.author.id}>! STOP SENDING GROOVY COMMANDS IN {message.channel.mention}**')
             elif mode == 'b':
                 await message.channel.send(f'<@{message.author.id}> **Hey! you can\'t say that word!**')
             await message.delete()
