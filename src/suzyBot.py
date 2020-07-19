@@ -4,15 +4,15 @@ import datetime
 import discord
 import dotenv
 import pymongo
-import urbandictionary as ud
-from PyDictionary import PyDictionary
+import PyDictionary
+from embeds import *
 
 class SuzyBot(discord.Client):
     def __init__(self):
         super().__init__()
         dotenv.load_dotenv()
         self.db = pymongo.MongoClient(os.getenv("DB_CONNECT"))
-        self.words = PyDictionary()
+        self.words = PyDictionary.PyDictionary()
     
     async def on_ready(self):
         try:
@@ -47,11 +47,9 @@ class SuzyBot(discord.Client):
     async def response(self, message, mode=''):
         try:
             if mode == 'g':
-                await message.channel.send(f'<@{message.author.id}> **STOP SENDING GROOVY COMMANDS IN {message.channel.mention}**')
+                await message.channel.send(f'<@{message.author.id}> {message.channel.mention}**', embed=embeds.Groovy)
             elif mode == 'b':
                 await message.channel.send(f'<@{message.author.id}> **Hey! you can\'t say that word!**')
-            else:
-                pass
             await message.delete()
         except Exception as e:
             self.errorInvoked(e)
