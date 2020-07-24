@@ -40,7 +40,7 @@ class SuzyBot(discord.Client):
             r = self.words.meaning(word)
             for i in r:
                 for k in r[i]:
-                    defn += f'{k}\n\n- '
+                    defn += f'- {k}\n'
 
             return defn
         except Exception as e:
