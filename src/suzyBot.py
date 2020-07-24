@@ -36,7 +36,7 @@ class SuzyBot(discord.Client):
 
     def define(self, word):
         try:
-            defn = f"***{word}***\n"
+            defn = f"***{word.Capitalize}***\n"
             r = self.words.meaning(word)
             for i in r:
                 for k in r[i]:
