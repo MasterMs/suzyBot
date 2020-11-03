@@ -50,7 +50,7 @@ class SuzyBot(discord.Client):
     async def response(self, message, mode=''):
         try:
             if mode == 'g':
-                await message.channel.send(f'<@{message.author.id}>! STOP SENDING GROOVY COMMANDS IN {message.channel.mention}**')
+                await message.channel.send(f'<@{message.author.id}>**STOP SENDING GROOVY COMMANDS IN {message.channel.mention}**!')
             elif mode == 'b':
                 await message.channel.send(f'<@{message.author.id}> **Hey! you can\'t say that word!**')
             await message.delete()
