@@ -34,6 +34,8 @@ class SuzyBot(discord.Client):
                 await message.add_reaction(self.get_emoji(743673927691272243))
             elif message.content.lower() == '-harry':
                 await message.channel.send(self.tenor.random("Harry Styles"))
+            elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
+                await self.response(message, mode='b')
         except Exception as e:
             self.errorInvoked(e)
 
