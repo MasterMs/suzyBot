@@ -26,8 +26,6 @@ class SuzyBot(discord.Client):
         try:
             if any(s in message.content.lower() for s in ["-play", "-leave", "-stop"]) and (message.channel.id in [422450473304326147, 690317486515814470]):
                 await self.response(message, mode='g')
-            elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
-                await self.response(message, mode='b')
             elif message.content.lower()[0:4] == '-def':
                 await message.channel.send(self.define(message.content[5:]))
             elif message.channel.id == 727404164224778320:
