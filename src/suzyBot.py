@@ -5,6 +5,7 @@ import discord
 import dotenv
 import pymongo
 import PyDictionary
+import tenorpy
 from embeds import *
 
 class SuzyBot(discord.Client):
@@ -13,6 +14,7 @@ class SuzyBot(discord.Client):
         dotenv.load_dotenv()
         self.db = pymongo.MongoClient(os.getenv("DB_CONNECT"))
         self.words = PyDictionary.PyDictionary()
+        self.tenor = tenorpy.Tenor()
     
     async def on_ready(self):
         try:
@@ -32,6 +34,8 @@ class SuzyBot(discord.Client):
                 await message.add_reaction(self.get_emoji(690057068455264258))
                 await message.add_reaction(self.get_emoji(727395835964424242))
                 await message.add_reaction(self.get_emoji(743673927691272243))
+            elif message.content.lower() == '-harry':
+                await message.channel.send(self.tenor.random("Harry Styles"))
         except Exception as e:
             self.errorInvoked(e)
 
@@ -42,7 +46,6 @@ class SuzyBot(discord.Client):
             for i in r:
                 for k in r[i]:
                     defn += f'- {k}\n'
-
             return defn
         except Exception as e:
             self.errorInvoked(e)
