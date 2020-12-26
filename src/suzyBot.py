@@ -27,13 +27,13 @@ class SuzyBot(discord.Client):
             if any(s in message.content.lower() for s in ["-play", "-leave", "-stop"]) and (message.channel.id in [422450473304326147, 690317486515814470]):
                 await self.response(message, mode='g')
             elif message.content.lower()[0:4] == '-def':
-                await message.channel.send(self.define(message.content[5:]))
+                await message.channel.send(self.define(f"{message.content[5:]}"))
             elif message.channel.id == 727404164224778320:
                 await message.add_reaction(self.get_emoji(690057068455264258))
                 await message.add_reaction(self.get_emoji(727395835964424242))
                 await message.add_reaction(self.get_emoji(743673927691272243))
-            elif message.content.lower() == '-harry':
-                await message.channel.send(self.tenor.random("Harry Styles"))
+            elif message.content.lower()[0:3] == '-gif':
+                await message.channel.send(self.tenor.random(f'{message.content.lower()[4:]}'))
             elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
                 await self.response(message, mode='b')
         except Exception as e:
