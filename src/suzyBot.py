@@ -17,7 +17,8 @@ class SuzyBot(discord.Client):
         try:
             await self.change_presence(status=discord.Status.online, activity=discord.Game("Beating David | --help"))
             for i in self.guilds:
-                print(i.members)
+                for k in i.members:
+                    print(k)
         except Exception as e:
             self.errorInvoked(e)
 
