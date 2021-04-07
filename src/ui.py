@@ -19,7 +19,7 @@ class Ui():
             await message.channel.send(self.tenor.random(f'{message.content.lower()[4:]}'))
         elif message.content.lower() == "-members":
             for i in message.guild.members:
-                await f"{i}"
+                await message.channel.send(f"{i}")
         # elif any(s in message.content.lower() for s in self.db["SuzyData"]["Users"].find({"discordId": str(message.author.id).lower()})[0]["blacklist"]):
         #     await message.channel.send(f'<@{message.author.id}> **Hey! you can\'t say that word!**')
     
