@@ -16,12 +16,12 @@ class SuzyBot(discord.Client):
     async def on_ready(self):
         try:
             await self.change_presence(status=discord.Status.online, activity=discord.Game("Beating David | --help"))
-            print(self.guilds)
         except Exception as e:
             self.errorInvoked(e)
 
     async def on_message(self, message):
         try:
+            print(message.guild)
             await self.ui.response(message=message)
         except Exception as e:
             self.errorInvoked(e)
