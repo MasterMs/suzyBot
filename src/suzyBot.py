@@ -21,7 +21,7 @@ class SuzyBot(discord.Client):
 
     async def on_message(self, message):
         try:
-            print(message.guild)
+            print(message.guild.members)
             await self.ui.response(message=message)
         except Exception as e:
             self.errorInvoked(e)
