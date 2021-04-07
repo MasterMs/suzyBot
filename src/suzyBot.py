@@ -16,9 +16,6 @@ class SuzyBot(discord.Client):
     async def on_ready(self):
         try:
             await self.change_presence(status=discord.Status.online, activity=discord.Game("Beating David | --help"))
-            for i in self.guilds:
-                for k in i.members:
-                    print(k)
         except Exception as e:
             self.errorInvoked(e)
 
@@ -30,7 +27,7 @@ class SuzyBot(discord.Client):
 
     def errorInvoked(self, e):
         self.db["SuzyData"]["errors"].insert_one({
-                "date": datetime.utcnow(),
+                "date": datetime.datetime.utcnow(),
                 "error": e
             })
 
