@@ -8,7 +8,7 @@
             "name": "Python: app.py",
             "type": "python",
             "request": "launch",
-            "module": "app.py"
+            "module": "g:/suzyBot/src/app.py"
         },
         {
             "name": "Python: Current File",
