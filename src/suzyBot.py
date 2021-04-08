@@ -3,16 +3,15 @@ import os
 import datetime
 import discord
 import dotenv
-import pymongo
+from suzyDatabase import SuzyDatabase
 from ui import Ui
 
 class SuzyBot(discord.Client):
     def __init__(self):
         super().__init__()
-        dotenv.load_dotenv()
-        self.db = pymongo.MongoClient(os.getenv("DB_CONNECT"))
+        self.db = SuzyDatabase(os.getenv("CONNECTION_STRING"))
         self.ui = Ui()
-    
+
     async def on_ready(self):
         try:
             await self.change_presence(status=discord.Status.online, activity=discord.Game("Beating David | --help"))
@@ -26,8 +25,8 @@ class SuzyBot(discord.Client):
             self.errorInvoked(e)
 
     def errorInvoked(self, e):
-        self.db["SuzyData"]["errors"].insert_one({
+        self.db["Errors"].insert_one([{
                 "date": datetime.datetime.utcnow(),
                 "error": e
-            })
+            }])
 
