@@ -8,4 +8,3 @@ COPY . .
 
 CMD [ "python", "src/app.py"]
 
-
