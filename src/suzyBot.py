@@ -1,4 +1,3 @@
-import os
 import discord
 from suzyDatabase import SuzyDatabase
 from ui import Ui
@@ -6,7 +5,7 @@ from ui import Ui
 class SuzyBot(discord.Client):
     def __init__(self):
         super().__init__()
-        self.db = SuzyDatabase(connect=os.getenv("DB_CONNECT"))
+        # self.db = SuzyDatabase(connect=os.getenv("DB_CONNECT"))
         self.ui = Ui()
 
     async def on_ready(self):
