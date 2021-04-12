@@ -7,4 +7,4 @@ class SuzyDatabase(pymongo.MongoClient):
     def loadDatabase(self, guilds):
         for guild in guilds:        
             if self["Servers"].find({"serverId": guild.id}) != {}:
-                self.db["Servers"].insert_one(guild.__dict__)
+                self["Servers"].insert_one(guild.__dict__)
