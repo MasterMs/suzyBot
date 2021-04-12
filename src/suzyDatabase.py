@@ -1,10 +1,13 @@
 import pymongo
+from pymongo import mongo_client
 
-class SuzyDatabase(pymongo.MongoClient):
-    def __init__(self, host, port, document_class, tz_aware, connect, type_registry, **kwargs):
-        super().__init__(host=host, port=port, document_class=document_class, tz_aware=tz_aware, connect=connect, type_registry=type_registry, **kwargs)
-        
+class SuzyDatabase(mongo_client):
+    def __init__(self, connection="") -> None:
+        super().__init__(connection=connection)
+
     def loadDatabase(self, guilds):
         for guild in guilds:        
             if self["Servers"].find({"serverId": guild.id}) != {}:
                 self["Servers"].insert_one(guild.__dict__)
+        
+
