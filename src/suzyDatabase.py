@@ -2,8 +2,8 @@ import pymongo
 from pymongo import mongo_client
 
 class SuzyDatabase(pymongo.MongoClient):
-    def __init__(self, host=None, port=None, document_class=None, tz_aware=None, connect=None, type_registry=None, **kwargs):
-        super().__init__(host=host, port=port, document_class=document_class, tz_aware=tz_aware, connect=connect, type_registry=type_registry, **kwargs)
+    def __init_subclass__(cls) -> None:
+        return super().__init_subclass__()
 
     def loadDatabase(self, guilds):
         for guild in guilds:        
