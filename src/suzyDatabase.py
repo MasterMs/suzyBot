@@ -10,4 +10,4 @@ class SuzyDatabase(pymongo.MongoClient):
             if self["Servers"].find({"serverId": guild.id}) != {}:
                 self["Servers"].insert_one(guild.__dict__)
         
-
+    
